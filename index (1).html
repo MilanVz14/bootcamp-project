@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- CABECERA -->
+    <header class="header">
+      <div class="header__inner">
+        <div class="header__top">
+          <h1 class="header__logo">TaskFlow</h1>
+          <button class="dark-mode-btn" id="dark-mode-btn" aria-label="Cambiar modo oscuro">🌙</button>
+        </div>
+        <p class="header__tagline">Organiza tu día, una tarea a la vez</p>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="layout">
+
+      <main class="main">
+
+        <!-- FORMULARIO PARA AÑADIR TAREAS -->
+        <section class="form-section" aria-labelledby="form-heading">
+          <h2 id="form-heading" class="section-title">Nueva tarea</h2>
+          <form class="task-form" id="task-form" novalidate>
+            <div class="form-group">
+              <label for="task-input">Título de la tarea</label>
+              <input
+                type="text"
+                id="task-input"
+                name="task"
+                placeholder="¿Qué tienes que hacer?"
+                autocomplete="off"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn--primary">Añadir tarea</button>
+          </form>
+        </section>
+
+        <!-- FILTROS -->
+        <section class="filters-section" aria-label="Filtros de tareas">
+          <div class="filters" role="group" aria-label="Filtrar tareas">
+            <button class="filter-btn filter-btn--active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="pending">Pendientes</button>
+            <button class="filter-btn" data-filter="completed">Completadas</button>
+          </div>
+          <div class="search-group">
+            <label for="search-input" class="sr-only">Buscar tareas</label>
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Buscar tareas..."
+              autocomplete="off"
+            />
+          </div>
+        </section>
+
+        <!-- ACCIONES GLOBALES -->
+        <section class="bulk-actions" aria-label="Acciones globales">
+          <button class="btn btn--secondary" id="complete-all-btn">Marcar todas completadas</button>
+          <button class="btn btn--danger" id="clear-completed-btn">Borrar completadas</button>
+        </section>
+
+        <!-- LISTA DE TAREAS -->
+        <section class="tasks-section" aria-labelledby="tasks-heading">
+          <h2 id="tasks-heading" class="section-title">Mis tareas</h2>
+          <ul class="task-list" id="task-list" role="list" aria-live="polite" aria-label="Lista de tareas">
+            <!-- Las tareas se renderizan aquí con JavaScript -->
+          </ul>
+          <p class="empty-state" id="empty-state" hidden>No hay tareas que mostrar.</p>
+        </section>
+
+      </main>
+
+      <!-- PANEL LATERAL DE ESTADÍSTICAS -->
+      <aside class="sidebar" aria-labelledby="stats-heading">
+        <h2 id="stats-heading" class="section-title">Estadísticas</h2>
+        <ul class="stats-list" role="list">
+          <li class="stat-item">
+            <span class="stat-label">Total</span>
+            <span class="stat-value" id="stat-total">0</span>
+          </li>
+          <li class="stat-item">
+            <span class="stat-label">Completadas</span>
+            <span class="stat-value stat-value--completed" id="stat-completed">0</span>
+          </li>
+          <li class="stat-item">
+            <span class="stat-label">Pendientes</span>
+            <span class="stat-value stat-value--pending" id="stat-pending">0</span>
+          </li>
+        </ul>
+      </aside>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>TaskFlow &copy; 2025 · Bootcamp CornerStudio</p>
+    </footer>
+
+    <!-- PLANTILLA BASE PARA CADA TAREA -->
+    <template id="task-template">
+      <li class="task-item" role="listitem">
+        <input type="checkbox" class="task-checkbox" aria-label="Marcar como completada" />
+        <span class="task-title"></span>
+        <button class="task-edit-btn" aria-label="Editar tarea">✏️</button>
+        <button class="task-delete-btn" aria-label="Eliminar tarea">🗑️</button>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
